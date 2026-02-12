@@ -22,6 +22,7 @@ const publicSharedLinksEnabled =
 
 const sharePointFilePickerEnabled = isEnabled(process.env.ENABLE_SHAREPOINT_FILEPICKER);
 const openidReuseTokens = isEnabled(process.env.OPENID_REUSE_TOKENS);
+const disableBirthdayIcon = isEnabled(process.env.DISABLE_BIRTHDAY_ICON);
 
 router.get('/', async function (req, res) {
   const cache = getLogStores(CacheKeys.CONFIG_STORE);
@@ -90,9 +91,10 @@ router.get('/', async function (req, res) {
         !!process.env.EMAIL_FROM,
       passwordResetEnabled,
       showBirthdayIcon:
-        isBirthday() ||
-        isEnabled(process.env.SHOW_BIRTHDAY_ICON) ||
-        process.env.SHOW_BIRTHDAY_ICON === '',
+        !disableBirthdayIcon &&
+        (isBirthday() ||
+          isEnabled(process.env.SHOW_BIRTHDAY_ICON) ||
+          process.env.SHOW_BIRTHDAY_ICON === ''),
       helpAndFaqURL: process.env.HELP_AND_FAQ_URL || 'https://librechat.ai',
       interface: appConfig?.interfaceConfig,
       turnstile: appConfig?.turnstileConfig,

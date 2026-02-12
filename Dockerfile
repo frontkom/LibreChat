@@ -50,7 +50,7 @@ RUN \
 # Node API setup
 EXPOSE 3080
 ENV HOST=0.0.0.0
-CMD ["npm", "run", "backend"]
+CMD ["sh", "-c", "sh ./scripts/init-persistent-storage.sh && npm run backend"]
 
 # Optional: for client with nginx routing
 # FROM nginx:stable-alpine AS nginx-client
