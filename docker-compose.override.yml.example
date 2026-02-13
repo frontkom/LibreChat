@@ -21,6 +21,15 @@
 
 # ---------------------------------------------------
 
+# # OVERRIDE LOGIN PAGE LOGO (assets/logo.svg)
+#
+# services:
+#   api:
+#     volumes:
+#       - ./branding/logo.svg:/app/client/public/assets/logo.svg:ro
+#
+# ---------------------------------------------------
+#
 # services:
 
 # # USE LIBRECHAT CONFIG FILE
